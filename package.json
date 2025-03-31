@@ -1,0 +1,27 @@
+{
+  "name": "serverless-helper",
+  "version": "1.0.0",
+  "description": "Enhanced CLI tool for Serverless Devs",
+  "main": "src/index.js",
+  "bin": {
+    "sr": "./src/index.js"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "inquirer": "^8.0.0",
+    "js-yaml": "^4.1.0"
+  },
+  "keywords": [
+    "serverless",
+    "cli",
+    "serverless-devs",
+    "aliyun",
+    "fc"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/serverless-helper.git"
+  }
+} 
