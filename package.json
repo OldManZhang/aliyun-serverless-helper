@@ -1,7 +1,8 @@
 {
-  "name": "serverless-helper",
+  "name": "aliyun-serverless-helper",
   "version": "1.0.0",
-  "description": "Enhanced CLI tool for Serverless Devs",
+  "description": "Enhanced CLI tool for Aliyun Serverless Devs",
+  "private": false,
   "main": "src/index.js",
   "bin": {
     "sr": "./src/index.js"
@@ -18,10 +19,10 @@
     "aliyun",
     "fc"
   ],
-  "author": "Your Name",
+  "author": "robin zhang",
   "license": "MIT",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yourusername/serverless-helper.git"
+    "type": "gitee",
+    "url": "git+https://gitee.com/oldmanzhang/project_severless_helper.git"
   }
 } 

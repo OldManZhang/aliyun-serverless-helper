@@ -1,23 +1,24 @@
-# Serverless Helper (sr)
+# Aliyun Serverless Helper (sr)
 
-An enhanced CLI tool for Serverless Devs that provides interactive menus and simplified commands.
+An enhanced CLI tool for Aliyun Serverless Devs that provides interactive menus and simplified commands.
 
 ## Installation
 
 ```bash
 # Install globally
-npm install -g serverless-helper
+npm install -g aliyun-serverless-helper
 
 # Or install from GitHub
-npm install -g github:yourusername/serverless-helper
+npm install -g github:OldManZhang/aliyun-serverless-helper
 ```
 
 ## Features
 
 - Interactive menu for common operations
-- Simplified command syntax
+- Simplified command syntax for Aliyun Function Compute
 - Instance management with easy selection
 - Support for both FC and FC3 formats
+- Optimized for Aliyun Serverless services
 
 ## Usage
 
@@ -52,7 +53,8 @@ sr instance --help
 ## Requirements
 
 - Node.js 12 or later
-- Serverless Devs (`@serverless-devs/s`) installed globally
+- Aliyun Serverless Devs (`@serverless-devs/s`) installed globally
+- Valid Aliyun credentials configured
 
 ## License
 
