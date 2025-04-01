@@ -1,6 +1,6 @@
 {
   "name": "aliyun-serverless-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Enhanced CLI tool for Aliyun Serverless Devs",
   "private": false,
   "main": "src/index.js",
@@ -25,4 +25,4 @@
     "type": "gitee",
     "url": "git+https://gitee.com/oldmanzhang/project_severless_helper.git"
   }
-} 
+}
