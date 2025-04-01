@@ -46,9 +46,9 @@ sr instance --help
 ## Options
 
 - `-t, --template <path>` - Specify the template file path
-- `-c, --config <path>` - Alternative way to specify template file
+**- `-c, --config <path>` - Alternative way to specify template file
 - `--silent` - Suppress non-essential output
-- `-o, --output-format <format>` - Specify output format (default|json|yaml|raw)
+- `-o, --output-format <format>` - Specify output format (default|json|yaml|raw)**
 
 ## Requirements
 

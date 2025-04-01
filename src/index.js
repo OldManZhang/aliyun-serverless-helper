@@ -385,13 +385,13 @@ async function handleInstanceExec(instanceId, options) {
     instanceId = instanceAnswer.instanceId;
   }
   
-  // Ask for command to execute with "cmd" as default
+  // Ask for command to execute with "sh" as default
   const commandAnswer = await inquirer.prompt([
     {
       type: 'input',
       name: 'command',
       message: 'Enter command to execute on instance:',
-      default: 'cmd',  // Set default value to "cmd"
+      default: 'sh',  // Set default value to "sh"
       validate: (input) => input.trim() !== '' ? true : 'Command is required'
     }
   ]);
