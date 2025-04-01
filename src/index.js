@@ -473,12 +473,9 @@ async function handleInteractive(options) {
 program
   .name('sr')
   .description('Enhanced CLI for Serverless Devs')
-  .version('1.0.0')
-  .option('-c, --config <path>', 'path to s.yaml file', './s.yaml')
+  .version('1.0.1')
   .option('-t, --template <path>', 'Specify the template file (same as -c)', './s.yaml')
-  .option('--silent', 'Suppress non-essential output')
-  .option('-o, --output-format <format>', 'Specify the output format', /^(default|json|yaml|raw)$/i, 'default');
-
+  
 program
   .command('deploy [functionName]')
   .description('Deploy a function')
