@@ -473,7 +473,7 @@ async function handleInteractive(options) {
 program
   .name('sr')
   .description('Enhanced CLI for Serverless Devs')
-  .version('1.0.1')
+  .version(require('../package.json').version)
   .option('-t, --template <path>', 'Specify the template file (same as -c)', './s.yaml')
   
 program
