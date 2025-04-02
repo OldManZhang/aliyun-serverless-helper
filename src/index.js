@@ -259,12 +259,9 @@ async function getInstanceIds(functionName, options) {
 function executeCommand(command, options) {
   try {
     console.log(`Executing: ${command}`);
-    const silentFlag = options.silent ? '--silent' : '';
-    const outputFormatOption = options.outputFormat !== 'default' ? 
-      `--output-format ${options.outputFormat}` : '';
     
     // Add silent and output format flags if specified
-    const fullCommand = `${command} ${silentFlag} ${outputFormatOption}`.trim();
+    const fullCommand = `${command}`.trim();
     
     execSync(fullCommand, { stdio: 'inherit' });
     return true;
