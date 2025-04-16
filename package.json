@@ -22,7 +22,7 @@
   "author": "robin zhang",
   "license": "MIT",
   "repository": {
-    "type": "gitee",
-    "url": "git+https://gitee.com/oldmanzhang/project_severless_helper.git"
+    "type": "git",
+    "url": "git+https://github.com/OldManZhang/aliyun-serverless-helper.git"
   }
 }
