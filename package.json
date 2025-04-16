@@ -1,6 +1,6 @@
 {
   "name": "aliyun-serverless-helper",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Enhanced CLI tool for Aliyun Serverless Devs",
   "private": false,
   "main": "src/index.js",
