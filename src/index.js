@@ -178,6 +178,11 @@ async function handleInstanceList(options) {
 
 // Function to get instance IDs for a function
 async function getInstanceIds(functionName, options) {
+  if (!functionName) {
+    console.error('Error: Function name is required');
+    return [];
+  }
+
   const yamlPath = options.template || options.config || './s.yaml';
   
   // Include the s.yaml path in the command using s's -t flag
@@ -192,6 +197,12 @@ async function getInstanceIds(functionName, options) {
     console.log(`Debug - Command: ${command}`);
     
     const result = execSync(command, { encoding: 'utf-8' });
+    
+    if (!result || result.trim() === '') {
+      console.log(`No instances found for ${functionName}`);
+      return [];
+    }
+    
     console.log('Debug - Raw result:', result);
     
     try {
@@ -251,6 +262,9 @@ async function getInstanceIds(functionName, options) {
     }
   } catch (error) {
     console.error('Failed to fetch instances:', error.message);
+    if (error.stderr) {
+      console.error('Error details:', error.stderr.toString());
+    }
     return [];
   }
 }
@@ -471,23 +485,82 @@ program
   .name('sr')
   .description('Enhanced CLI for Serverless Devs')
   .version(require('../package.json').version)
-  .option('-t, --template <path>', 'Specify the template file (same as -c)', './s.yaml')
+  .option('-t, --template <path>', 'Specify the template file (same as -c)', './s.yaml');
+
+// Add command validation
+program.on('command:*', (operands) => {
+  const [command] = operands;
+  const validCommands = ['deploy', 'invoke', 'instance'];
+  const validInstanceCommands = ['list', 'log', 'exec'];
   
+  // Check if it's a misspelled main command
+  if (!validCommands.includes(command)) {
+    console.error(`Error: Unknown command '${command}'`);
+    console.log(`Did you mean one of these?`);
+    validCommands.forEach(cmd => console.log(`  ${cmd}`));
+    process.exit(1);
+  }
+  
+  // Check if it's a misspelled instance subcommand
+  if (command === 'instance' && operands.length > 1) {
+    const subcommand = operands[1];
+    if (!validInstanceCommands.includes(subcommand)) {
+      console.error(`Error: Unknown instance subcommand '${subcommand}'`);
+      console.log(`Did you mean one of these?`);
+      validInstanceCommands.forEach(cmd => console.log(`  ${cmd}`));
+      process.exit(1);
+    }
+  }
+});
+
 program
   .command('deploy [functionName]')
   .description('Deploy a function')
-  .action((functionName, cmdObj) => handleDeploy(functionName, cmdObj.parent.opts()));
+  .action((functionName, cmdObj) => {
+    // Get options from the root program
+    const options = program.opts();
+    handleDeploy(functionName, options);
+  });
 
 // Add the invoke command
 program
   .command('invoke [functionName]')
   .description('Invoke a function')
-  .action((functionName, cmdObj) => handleInvoke(functionName, cmdObj.parent.opts()));
+  .action((functionName, cmdObj) => {
+    // Get options from the root program
+    const options = program.opts();
+    handleInvoke(functionName, options);
+  });
 
 // After existing commands, add instance command with subcommands
 const instanceCommand = program
   .command('instance')
-  .description('Instance operations');
+  .description('Instance operations')
+  .action((cmdObj) => {
+    // Get options from the root program
+    const options = program.opts();
+    handleInstanceInteractive(options);
+  });
+
+// Add a new function to handle interactive instance operations
+async function handleInstanceInteractive(options) {
+  const answer = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'subcommand',
+      message: 'Select instance operation:',
+      choices: ['list', 'log', 'exec']
+    }
+  ]);
+
+  if (answer.subcommand === 'list') {
+    await handleInstanceList(options);
+  } else if (answer.subcommand === 'log') {
+    await handleInstanceLog(null, options);
+  } else if (answer.subcommand === 'exec') {
+    await handleInstanceExec(null, options);
+  }
+}
 
 instanceCommand
   .command('list')
@@ -521,7 +594,21 @@ instanceCommand
 // Add this to handle the case when no command is given, just options
 program
   .action(() => {
-    // This will only run if no specific command was matched
+    // Check if command was provided but is invalid
+    const args = process.argv.slice(2);
+    if (args.length > 0 && !args[0].startsWith('-')) {
+      const command = args[0];
+      const validCommands = ['deploy', 'invoke', 'instance'];
+      
+      if (!validCommands.includes(command)) {
+        console.error(`Error: Unknown command '${command}'`);
+        console.log(`Did you mean one of these?`);
+        validCommands.forEach(cmd => console.log(`  ${cmd}`));
+        process.exit(1);
+      }
+    }
+    
+    // This will only run if no specific command was matched or only options were provided
     handleInteractive(program.opts());
   });
 
