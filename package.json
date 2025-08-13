@@ -1,6 +1,6 @@
 {
   "name": "project_severless_helper",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A CLI tool to simplify Serverless Devs (s) commands",
   "main": "src/index.js",
   "bin": {
