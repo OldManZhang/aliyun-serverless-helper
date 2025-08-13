@@ -36,8 +36,8 @@ sr
 sr -t ./path/to/s.yaml
 
 # Direct commands
-sr deploy [function-name]
-sr invoke [function-name]
+sr deploy [resource-name]
+sr invoke [resource-name]
 
 # Instance operations
 sr instance list
@@ -58,19 +58,19 @@ sr instance --help
 ### Old Usage Patterns
 ```bash
 # Deploying a function
-s deploy function-name
+s resource-name deploy 
 
 # Invoking a function
-s invoke function-name
+s resource-name invoke
 
 # Managing instances
-s function-name instance list
-s function-name logs --instance-id xxx
-s function-name instance exec --instance-id xxx -c "sh"
+s resource-name instance list
+s resource-name logs --instance-id xxx
+s resource-name instance exec --instance-id xxx -c "sh"
 
 # Multiple steps for template specification
-s -t ./s.yaml deploy function-name
-s -t ./s.yaml invoke function-name
+s resource-name deploy -t ./s.yaml
+s resource-name invoke -t ./s.yaml
 ```
 
 ### Optimized Usage with Aliyun Serverless Helper
@@ -80,10 +80,10 @@ sr deploy
 
 # Quick deployment with direct function name
 # #IMPORTANCE# Command pattern: sr [ACTION] [OBJECT] - intuitive and consistent syntax
-sr deploy function-name
+sr deploy resource-name
 
 # Template-aware deployment
-sr -t ./templates/s.prod.yaml deploy function-name
+sr -t ./templates/s.prod.yaml deploy resource-name
 
 # Simplified instance management
 # #IMPORTANCE#  no need to retrieve the instance-id first
@@ -92,8 +92,8 @@ sr instance log
 sr instance exec
 
 # One-time template specification for multiple commands
-sr -t ./templates/s.prod.yaml deploy function-name
-sr -t ./templates/s.prod.yaml invoke function-name
+sr -t ./templates/s.prod.yaml deploy resource-name
+sr -t ./templates/s.prod.yaml invoke resource-name
 ```
 
 ### Key Improvements

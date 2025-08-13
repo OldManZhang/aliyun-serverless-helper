@@ -35,8 +35,8 @@ sr
 sr -t ./path/to/s.yaml
 
 # 直接命令
-sr deploy [function-name]
-sr invoke [function-name]
+sr deploy [resource-name]
+sr invoke [resource-name]
 
 # 实例操作
 sr instance list
@@ -57,19 +57,19 @@ sr instance --help
 ### 传统使用方式
 ```bash
 # 部署函数
-s deploy function-name
+s resource-name deploy
 
 # 调用函数
-s invoke function-name
+s resource-name invoke
 
 # 管理实例
-s function-name instance list
-s function-name logs --instance-id xxx
-s function-name instance exec --instance-id xxx -c "sh"
+s resource-name instance list
+s resource-name logs --instance-id xxx
+s resource-name instance exec --instance-id xxx -c "sh"
 
 # 多次指定模板
-s -t ./s.yaml deploy function-name
-s -t ./s.yaml invoke function-name
+s resource-name deploy -t ./s.yaml
+s resource-name invoke -t ./s.yaml
 ```
 
 ### 使用 Aliyun Serverless Helper 优化方式
@@ -79,10 +79,10 @@ sr deploy
 
 # 直接部署指定函数
 # #重要# 命令模式：sr [动作] [对象] - 直观且一致的语法
-sr deploy function-name
+sr deploy resource-name
 
 # 模板感知部署
-sr -t ./templates/s.prod.yaml deploy function-name
+sr -t ./templates/s.prod.yaml deploy resource-name
 
 # 简化的实例管理
 # #重要# 无需先获取 instance-id
@@ -91,8 +91,8 @@ sr instance log
 sr instance exec
 
 # 一次性指定模板，用于多个命令
-sr -t ./templates/s.prod.yaml deploy function-name
-sr -t ./templates/s.prod.yaml invoke function-name
+sr -t ./templates/s.prod.yaml deploy resource-name
+sr -t ./templates/s.prod.yaml invoke resource-name
 ```
 
 ### 主要改进

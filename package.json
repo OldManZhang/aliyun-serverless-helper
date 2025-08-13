@@ -1,28 +1,42 @@
 {
-  "name": "aliyun-serverless-helper",
-  "version": "1.0.6",
-  "description": "Enhanced CLI tool for Aliyun Serverless Devs",
-  "private": false,
+  "name": "project_severless_helper",
+  "version": "1.0.8",
+  "description": "A CLI tool to simplify Serverless Devs (s) commands",
   "main": "src/index.js",
   "bin": {
-    "sr": "./src/index.js"
+    "sr": "src/index.js"
   },
-  "dependencies": {
-    "commander": "^9.0.0",
-    "inquirer": "^8.0.0",
-    "js-yaml": "^4.1.0"
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "serverless",
     "cli",
-    "serverless-devs",
-    "aliyun",
-    "fc"
+    "s",
+    "serverless-devs"
   ],
-  "author": "robin zhang",
+  "author": "Your Name",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OldManZhang/aliyun-serverless-helper.git"
+  "dependencies": {
+    "commander": "^11.0.0",
+    "fuzzy": "^0.1.3",
+    "inquirer": "^8.2.6",
+    "inquirer-autocomplete-prompt": "^3.0.1",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "moduleNameMapper": {
+      "inquirer-autocomplete-prompt": "<rootDir>/__mocks__/inquirer-autocomplete-prompt.js"
+    }
   }
 }
