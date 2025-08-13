@@ -1,6 +1,10 @@
 const { execSync } = require('child_process');
 const fuzzy = require('fuzzy');
 const inquirer = require('inquirer');
+const autocomplete = require('inquirer-autocomplete-prompt');
+
+// Register the autocomplete prompt
+inquirer.registerPrompt('autocomplete', autocomplete);
 
 // Function to execute command
 function executeCommand(command, options) {
@@ -113,12 +117,6 @@ async function getInstanceIds(resourceName, options) {
 
 // Function to select a resource with sorting and fuzzy search
 async function selectResource(resourcesList, message) {
-  // Dynamically import inquirer-autocomplete-prompt
-  const autocomplete = (await import('inquirer-autocomplete-prompt')).default;
-  
-  // Register the autocomplete prompt
-  inquirer.registerPrompt('autocomplete', autocomplete);
-  
   // Sort the resources list
   const sortedResources = resourcesList.sort();
   
